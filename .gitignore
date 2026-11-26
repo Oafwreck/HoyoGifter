@@ -1,0 +1,14 @@
+# OS / Editor
+.DS_Store
+Thumbs.db
+Desktop.ini
+.vscode/
+.idea/
+*.swp
+
+# Python
+__pycache__/
+*.pyc
+
+# Exported webhook backups (may contain secret Discord Webhook URLs)
+hoyo_*.json

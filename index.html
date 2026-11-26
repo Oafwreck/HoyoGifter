@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0d1017">
+  <meta name="color-scheme" content="dark">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src https://discord.com; font-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+  <meta name="referrer" content="no-referrer">
+  <meta name="description" content="HoYoverseゲームの交換コードを公式交換ページのURL・Discord向けMarkdownリンクへ変換する非公式ツール">
+  <title>HoyoGift Hub | 交換コードリンク作成</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/workspace.css">
+</head>
+<body data-page="converter" data-game="zzz">
+<svg class="svg-sprite" aria-hidden="true">
+  <symbol id="icon-gift" viewBox="0 0 24 24"><path d="M20 12v9H4v-9M2 7h20v5H2zM12 7v14M12 7H7.5a2.5 2.5 0 1 1 2.1-3.85L12 7Zm0 0h4.5a2.5 2.5 0 1 0-2.1-3.85L12 7Z"/></symbol>
+  <symbol id="icon-game-zzz" viewBox="0 0 24 24"><path d="M5 6h14l-11 12h11M13 3l-2 4M13 17l-2 4"/></symbol>
+  <symbol id="icon-game-genshin" viewBox="0 0 24 24"><path d="M12 2.5 14.6 9.4 21.5 12 14.6 14.6 12 21.5 9.4 14.6 2.5 12 9.4 9.4 12 2.5Z"/></symbol>
+  <symbol id="icon-game-hsr" viewBox="0 0 24 24"><ellipse cx="12" cy="12" rx="9.5" ry="4.2" transform="rotate(-28 12 12)"/><path d="M12 6.5 13.3 10.7 17.5 12 13.3 13.3 12 17.5 10.7 13.3 6.5 12 10.7 10.7 12 6.5Z"/></symbol>
+  <symbol id="icon-wand" viewBox="0 0 24 24"><path d="m15 4 5 5L8 21H3v-5L15 4ZM13 6l5 5M5 3v4M3 5h4M19 16v5M16.5 18.5h5"/></symbol>
+  <symbol id="icon-settings" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .34 1.88l.06.06-2.83 2.83-.06-.06a1.7 1.7 0 0 0-1.88-.34 1.7 1.7 0 0 0-1.03 1.56V21h-4v-.09A1.7 1.7 0 0 0 9 19.36a1.7 1.7 0 0 0-1.88.34l-.06.06-2.83-2.83.06-.06A1.7 1.7 0 0 0 4.63 15 1.7 1.7 0 0 0 3.08 14H3v-4h.09A1.7 1.7 0 0 0 4.64 9a1.7 1.7 0 0 0-.34-1.88l-.06-.06 2.83-2.83.06.06A1.7 1.7 0 0 0 9 4.63a1.7 1.7 0 0 0 1-1.55V3h4v.09A1.7 1.7 0 0 0 15 4.64a1.7 1.7 0 0 0 1.88-.34l.06-.06 2.83 2.83-.06.06A1.7 1.7 0 0 0 19.37 9a1.7 1.7 0 0 0 1.55 1H21v4h-.09A1.7 1.7 0 0 0 19.4 15Z"/></symbol>
+  <symbol id="icon-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7h.01"/></symbol>
+  <symbol id="icon-check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol>
+  <symbol id="icon-copy" viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></symbol>
+  <symbol id="icon-external" viewBox="0 0 24 24"><path d="M14 4h6v6M20 4 11 13M20 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1h5"/></symbol>
+  <symbol id="icon-send" viewBox="0 0 24 24"><path d="m22 2-7 20-4-9-9-4 20-7Z"/><path d="M22 2 11 13"/></symbol>
+  <symbol id="icon-trash" viewBox="0 0 24 24"><path d="M4 7h16M9 7V4h6v3M6 7l1 14h10l1-14M10 11v6M14 11v6"/></symbol>
+  <symbol id="icon-history" viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5M12 7v5l3 2"/></symbol>
+  <symbol id="icon-webhook" viewBox="0 0 24 24"><circle cx="6" cy="12" r="3"/><circle cx="18" cy="6" r="3"/><circle cx="18" cy="18" r="3"/><path d="m8.6 10.5 6.8-3M8.6 13.5l6.8 3"/></symbol>
+  <symbol id="icon-download" viewBox="0 0 24 24"><path d="M12 3v12M7 10l5 5 5-5M4 20h16"/></symbol>
+  <symbol id="icon-upload" viewBox="0 0 24 24"><path d="M12 16V4M7 9l5-5 5 5M4 20h16"/></symbol>
+  <symbol id="icon-eye" viewBox="0 0 24 24"><path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6S2 12 2 12Z"/><circle cx="12" cy="12" r="2.5"/></symbol>
+  <symbol id="icon-eye-off" viewBox="0 0 24 24"><path d="m3 3 18 18M10.6 6.1A10.9 10.9 0 0 1 12 6c6.5 0 10 6 10 6a17.4 17.4 0 0 1-2.1 2.8M6.6 6.6C3.6 8.4 2 12 2 12s3.5 6 10 6a10.7 10.7 0 0 0 3.4-.5M9.9 9.9a3 3 0 0 0 4.2 4.2"/></symbol>
+  <symbol id="icon-test" viewBox="0 0 24 24"><path d="M9 3h6M10 3v5l-5 9a2 2 0 0 0 1.7 3h10.6a2 2 0 0 0 1.7-3l-5-9V3M8 15h8"/></symbol>
+  <symbol id="icon-up" viewBox="0 0 24 24"><path d="m6 15 6-6 6 6"/></symbol>
+  <symbol id="icon-down" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></symbol>
+  <symbol id="icon-restore" viewBox="0 0 24 24"><path d="M9 7H4v-5M4.5 7.5A9 9 0 1 1 3 14"/></symbol>
+  <symbol id="icon-log" viewBox="0 0 24 24"><path d="M5 4h14v16H5zM8 8h8M8 12h8M8 16h5"/></symbol>
+  <symbol id="icon-close" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></symbol>
+  <symbol id="icon-paste" viewBox="0 0 24 24"><path d="M9 5h6M9 3h6v4H9zM8 5H6a2 2 0 0 0-2 2v13h16V7a2 2 0 0 0-2-2h-2M8 12h8M8 16h5"/></symbol>
+  <symbol id="icon-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></symbol>
+  <symbol id="icon-retry" viewBox="0 0 24 24"><path d="M20 11a8 8 0 1 0-2.3 5.7M20 4v7h-7"/></symbol>
+  <symbol id="icon-database" viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v6c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 11v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"/></symbol>
+  <symbol id="icon-help" viewBox="0 0 24 24"><path d="M4 4h6a3 3 0 0 1 3 3v13a3 3 0 0 0-3-3H4zM20 4h-6a3 3 0 0 0-3 3v13a3 3 0 0 1 3-3h6z"/></symbol>
+</svg>
+
+<a class="skip-link" href="#main-content">メインコンテンツへ移動</a>
+
+<div id="app">
+  <header class="navbar">
+    <a class="logo" href="#converter" aria-label="HoyoGift Hub ホーム" data-action="tab" data-tab="converter">
+      <svg class="icon logo-gift" aria-hidden="true"><use href="#icon-gift"/></svg>
+      <span class="logo-copy"><span class="logo-name" translate="no">HoyoGift Hub</span><span class="logo-sub">交換コード共有ツール</span></span>
+    </a>
+
+    <nav class="nav-tabs" aria-label="メインナビゲーション" role="tablist" aria-orientation="horizontal">
+      <button class="nav-tab active" id="nav-converter" data-tab="converter" role="tab" aria-controls="tab-converter" aria-selected="true" data-action="tab">
+        <svg class="icon" aria-hidden="true"><use href="#icon-wand"/></svg><span>リンク作成</span>
+      </button>
+      <button class="nav-tab" id="nav-settings" data-tab="settings" role="tab" aria-controls="tab-settings" aria-selected="false" data-action="tab">
+        <svg class="icon" aria-hidden="true"><use href="#icon-settings"/></svg><span>Discord設定</span><span class="n-badge" id="whBadge">0</span>
+      </button>
+      <button class="nav-tab" id="nav-help" data-tab="help" role="tab" aria-controls="tab-help" aria-selected="false" data-action="tab">
+        <svg class="icon" aria-hidden="true"><use href="#icon-help"/></svg><span>使い方</span>
+      </button>
+    </nav>
+
+    <div class="sidebar-support">
+      <p>保存とプライバシー</p>
+      <button id="storageStatusBtn" class="storage-status" type="button" data-action="storageSettings" aria-label="保存ON：データ管理を開く">
+        <svg class="icon" aria-hidden="true"><use href="#icon-database"/></svg><span id="storageStatusText">保存ON</span>
+      </button>
+      <small>HoYoverse 非公式ツール</small>
+    </div>
+  </header>
+
+  <main id="main-content" tabindex="-1">
+    <section id="tab-converter" data-workspace="input" class="tab-pane active" role="tabpanel" aria-labelledby="nav-converter">
+      <div class="screen-heading">
+        <div>
+          <h1>交換リンクをつくる</h1>
+          <p>作品を選び、コードを貼り付けるだけで公式交換リンクを自動生成します。</p>
+        </div>
+        <div class="workspace-modes converter-modes" role="group" aria-label="リンク作成の表示">
+          <button type="button" class="workspace-mode" data-action="converterView" aria-controls="inputPanel" data-view="input" aria-pressed="true">
+            <svg class="icon" aria-hidden="true"><use href="#icon-paste"/></svg><span>コード入力</span>
+          </button>
+          <button type="button" class="workspace-mode" data-action="converterView" aria-controls="outputPanel" data-view="result" aria-pressed="false">
+            <svg class="icon" aria-hidden="true"><use href="#icon-external"/></svg><span>共有</span><span id="workspaceResultCount" class="n-badge">0</span>
+          </button>
+          <button type="button" class="workspace-mode" data-action="converterView" aria-controls="historyPanel" data-view="history" aria-pressed="false">
+            <svg class="icon" aria-hidden="true"><use href="#icon-history"/></svg><span class="history-mode-label">履歴</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="converter-workbench">
+        <section class="game-picker" data-step-state="done" aria-labelledby="step-game">
+          <div class="step-heading">
+            <h2 id="step-game"><span class="task-index" aria-hidden="true">1</span>作品を選ぶ</h2>
+            <span class="step-meta">色とアイコンで対象作品を表示</span>
+          </div>
+          <fieldset class="game-grid"><legend class="sr-only">ゲーム選択</legend>
+            <label class="game-label" data-game="zzz">
+              <input type="radio" name="game" value="https://zenless.hoyoverse.com/redemption/gift?code=" class="game-radio" checked aria-label="ゼンレスゾーンゼロ">
+              <span class="game-option">
+                <span class="game-lead">
+                  <span class="game-emblem" aria-hidden="true"><svg class="icon"><use href="#icon-game-zzz"/></svg></span>
+                  <span class="game-info"><span class="game-nm">ゼンレスゾーンゼロ</span><span class="game-short" aria-hidden="true">ゼンゼロ</span></span>
+                </span>
+                <svg class="icon game-check" aria-hidden="true"><use href="#icon-check"/></svg>
+              </span>
+            </label>
+            <label class="game-label" data-game="genshin">
+              <input type="radio" name="game" value="https://genshin.hoyoverse.com/ja/gift?code=" class="game-radio" aria-label="原神">
+              <span class="game-option">
+                <span class="game-lead">
+                  <span class="game-emblem" aria-hidden="true"><svg class="icon"><use href="#icon-game-genshin"/></svg></span>
+                  <span class="game-info"><span class="game-nm">原神</span><span class="game-short" aria-hidden="true">原神</span></span>
+                </span>
+                <svg class="icon game-check" aria-hidden="true"><use href="#icon-check"/></svg>
+              </span>
+            </label>
+            <label class="game-label" data-game="hsr">
+              <input type="radio" name="game" value="https://hsr.hoyoverse.com/gift?code=" class="game-radio" aria-label="崩壊：スターレイル">
+              <span class="game-option">
+                <span class="game-lead">
+                  <span class="game-emblem" aria-hidden="true"><svg class="icon"><use href="#icon-game-hsr"/></svg></span>
+                  <span class="game-info"><span class="game-nm">崩壊：スターレイル</span><span class="game-short" aria-hidden="true">スタレ</span></span>
+                </span>
+                <svg class="icon game-check" aria-hidden="true"><use href="#icon-check"/></svg>
+              </span>
+            </label>
+          </fieldset>
+        </section>
+
+        <div class="editor-workspace">
+          <section id="inputPanel" class="input-panel" data-step-state="active" aria-labelledby="step-code">
+            <div class="code-entry">
+              <div class="step-heading">
+                <h2 id="step-code"><span class="task-index" aria-hidden="true">2</span>コードを貼り付け</h2>
+                <span class="step-meta">最大20件</span>
+              </div>
+              <div class="field">
+                <div class="field-label-row">
+                  <label for="inputText">1行に1件。公式の交換URLもそのまま使えます。</label>
+                  <div class="input-tools">
+                    <button class="btn btn-paste" type="button" data-action="paste">
+                      <svg class="icon" aria-hidden="true"><use href="#icon-paste"/></svg><span class="action-label">貼り付け</span>
+                    </button>
+                  </div>
+                </div>
+                <div class="textarea-wrap">
+                  <textarea id="inputText" class="cyber-input mono" translate="no" placeholder="CODE123ABC&#10;CODE456DEF&#10;…" rows="4" maxlength="10000" spellcheck="false" autocomplete="off" aria-describedby="codeValidation inputNote"></textarea>
+                </div>
+                <div class="input-meter" id="inputMeter" data-state="ok" aria-hidden="true"><div class="input-meter-fill" id="inputMeterFill"></div></div>
+                <div class="input-metrics"><span id="codeCount">0 / 20コード</span><span id="charCount">0 / 10,000文字</span></div>
+                <div class="input-status" id="codeValidation" aria-live="polite"></div>
+              </div>
+              <div class="input-utilities" role="group" aria-label="入力の編集">
+                <button id="normalizeInputBtn" class="btn btn-quiet" type="button" data-action="normalize" aria-label="入力を整理（大文字化・重複と無効行を除去）" title="大文字化・重複と無効行を整理。取り消せます。" disabled>
+                  <svg class="icon" aria-hidden="true"><use href="#icon-wand"/></svg><span class="action-label">整理</span>
+                </button>
+                <button id="undoInputBtn" class="btn btn-quiet" type="button" data-action="undoInput" aria-label="入力整理・クリアを取り消す" title="入力整理・クリアを取り消す" disabled>
+                  <svg class="icon" aria-hidden="true"><use href="#icon-restore"/></svg><span class="action-label">元に戻す</span>
+                </button>
+                <button class="btn btn-quiet" type="button" data-action="clear" aria-label="交換コードをすべてクリア" title="入力をクリア">
+                  <svg class="icon" aria-hidden="true"><use href="#icon-trash"/></svg><span class="action-label">クリア</span>
+                </button>
+              </div>
+              <div class="input-bottom">
+                <p class="input-note" id="inputNote">入力と同時に自動変換。整理・クリアは「元に戻す」で1回戻せます。</p>
+                <button type="button" id="jumpResults" class="btn btn-quiet jump-results" data-action="results" hidden>結果を見る</button>
+              </div>
+            </div>
+          </section>
+
+          <section class="output-panel" tabindex="-1" id="outputPanel" data-step-state="idle" aria-labelledby="step-output">
+            <div class="output-bar">
+              <div class="step-heading">
+                <div class="result-total">
+                  <h2 id="step-output" tabindex="-1"><span class="task-index" aria-hidden="true">3</span>リンクを共有</h2>
+                  <span class="step-meta" id="resultCount" data-has-items="false" aria-live="polite">0件</span>
+                </div>
+              </div>
+              <div class="preview-toolbar">
+                <div class="preview-tabs" role="tablist" aria-label="結果の表示形式">
+                  <button id="view-links" class="preview-tab" type="button" role="tab" aria-controls="linkList" aria-selected="true" data-action="view" data-view="links">URL</button>
+                  <button id="view-markdown" class="preview-tab" type="button" role="tab" aria-controls="outputText" aria-selected="false" tabindex="-1" data-action="view" data-view="markdown" aria-label="Discord用のMarkdown形式">Discord用</button>
+                </div>
+                <label class="heading-select" for="headingSelect">見出し
+                  <select id="headingSelect">
+                    <option value="#">大きい見出し</option>
+                    <option value="##">中くらい</option>
+                    <option value="###">小さい見出し</option>
+                    <option value="">なし</option>
+                  </select>
+                </label>
+              </div>
+            </div>
+
+            <div id="resultSection" class="result-card">
+              <div class="result-empty">
+                <div class="empty-mark"><svg class="icon" aria-hidden="true"><use href="#icon-external"/></svg></div>
+                <p>コードを貼ると、リンクが表示されます</p>
+                <span>作品を選び、コードか公式の交換URLを入力してください。</span>
+              </div>
+              <div class="result-content">
+                <div class="result-links" id="linkList" role="tabpanel" aria-labelledby="view-links" tabindex="0"></div>
+                <pre class="result-raw" id="outputText" translate="no" role="tabpanel" aria-labelledby="view-markdown" tabindex="0" hidden></pre>
+              </div>
+            </div>
+
+            <div class="output-dock">
+              <div class="output-actions">
+                <button id="copyMarkdown" aria-label="Discord用のMarkdownをコピー" class="btn btn-secondary" type="button" data-action="copy" disabled>
+                  <svg class="icon" aria-hidden="true"><use href="#icon-copy"/></svg><span class="copy-label">Discord用にコピー</span><span class="copy-short" aria-hidden="true">Discord用にコピー</span>
+                </button>
+                <button id="copyUrls" class="btn btn-primary" type="button" data-action="urls" disabled>
+                  <svg class="icon" aria-hidden="true"><use href="#icon-copy"/></svg><span>URLをコピー</span>
+                </button>
+              </div>
+
+              <section class="direct-share" aria-labelledby="directShareTitle">
+                <div class="direct-share-head">
+                  <div class="direct-share-title"><svg class="icon" aria-hidden="true"><use href="#icon-webhook"/></svg><h3 id="directShareTitle">Discordに直接送る</h3></div>
+                  <p class="direct-share-note">確認後に送信</p>
+                </div>
+                <p id="deliveryStatus" class="input-status neutral" role="status" aria-live="polite"></p>
+                <div id="sendRow" class="send-row">
+                  <button id="sendBtn" class="btn btn-discord" type="button" data-action="send" disabled>
+                    <svg class="icon" aria-hidden="true"><use href="#icon-send"/></svg><span>Discordへ送信</span>
+                  </button>
+                  <span class="send-hint" id="sendHint"><button type="button" data-action="settings">送信先を設定</button></span>
+                </div>
+              </section>
+            </div>
+          </section>
+        </div>
+      </div>
+
+      <aside id="historyPanel" class="side-panel history-panel" hidden aria-labelledby="historyTitle">
+        <div class="side-header">
+          <div class="history-title-group">
+            <h2 class="side-title" id="historyTitle"><svg class="icon" aria-hidden="true"><use href="#icon-history"/></svg>最近のリンク <span class="n-badge history-badge" id="histBadge">0</span></h2>
+            <span class="history-caption">コピー・送信時に自動で記録します</span>
+          </div>
+          <button class="icon-button btn-danger" type="button" data-action="clearHistory" aria-label="履歴をすべて削除" title="履歴をすべて削除">
+            <svg class="icon" aria-hidden="true"><use href="#icon-trash"/></svg>
+          </button>
+        </div>
+        <div id="historyList" tabindex="0" aria-label="最近のリンク一覧"></div>
+      </aside>
+    </section>
+
+    <section id="tab-settings" data-workspace="list" class="tab-pane" role="tabpanel" aria-labelledby="nav-settings">
+      <div class="screen-heading">
+        <div>
+          <h1>Discordの送信先</h1>
+          <p>作品ごとに Webhook を登録すると、作成したリンクをまとめて送信できます。</p>
+        </div>
+        <div class="heading-actions">
+          <a class="heading-help" href="#help-webhook" aria-label="Discordの設定方法を見る" data-action="help" data-anchor="help-webhook">
+            <svg class="icon" aria-hidden="true"><use href="#icon-help"/></svg><span>設定方法</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="workspace-modes settings-modes" role="group" aria-label="Discord設定の表示">
+        <button type="button" class="workspace-mode" data-action="settingsView" aria-controls="settings-list-pane" data-view="list" aria-pressed="true"><svg class="icon" aria-hidden="true"><use href="#icon-webhook"/></svg>送信先</button>
+        <button type="button" class="workspace-mode" data-action="newWebhook" aria-controls="settings-add-pane" data-view="add" aria-pressed="false"><svg class="icon" aria-hidden="true"><use href="#icon-gift"/></svg>追加</button>
+        <button type="button" class="workspace-mode" data-action="settingsView" aria-controls="settings-log-pane" data-view="log" aria-pressed="false"><svg class="icon" aria-hidden="true"><use href="#icon-log"/></svg>送信履歴</button>
+        <button type="button" class="workspace-mode" data-action="settingsView" aria-controls="settings-data-pane" data-view="data" aria-pressed="false"><svg class="icon" aria-hidden="true"><use href="#icon-database"/></svg>保存・移行</button>
+      </div>
+
+      <div class="workspace-grid">
+        <div class="workflow-stack">
+          <section id="settings-list-pane" class="panel destinations-panel" aria-labelledby="webhookListTitle">
+            <div class="section-toolbar">
+              <h2 id="webhookListTitle">登録した送信先 <span id="webhookCount" class="section-count">0 / 10件</span></h2>
+              <div class="toolbar-actions">
+                <button class="btn btn-quiet" type="button" data-action="allOn">すべてON</button>
+                <button class="btn btn-quiet" type="button" data-action="allOff">すべてOFF</button>
+              </div>
+            </div>
+            <p id="settingsIssue" class="input-status err" role="status"></p>
+            <div class="wh-list" id="webhookList" tabindex="0" aria-label="登録済みの送信先一覧"></div>
+          </section>
+
+          <section id="settings-add-pane" class="panel add-panel" hidden aria-labelledby="webhookAddTitle">
+            <div class="panel-heading">
+              <span class="panel-icon"><svg class="icon" aria-hidden="true"><use href="#icon-webhook"/></svg></span>
+              <h2 id="webhookAddTitle">送信先を登録する</h2>
+              <span class="section-count">最大10件</span>
+            </div>
+            <form id="webhookForm" novalidate>
+              <div class="grid2">
+                <div class="field">
+                  <label for="webhookGame">対応ゲーム</label>
+                  <select id="webhookGame" class="cyber-input">
+                    <option value="zzz">ゼンレスゾーンゼロ</option>
+                    <option value="genshin">原神</option>
+                    <option value="hsr">崩壊：スターレイル</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label for="webhookName">送信先の名前</label>
+                  <input id="webhookName" maxlength="80" aria-required="true" aria-describedby="webhookNameError" class="cyber-input" placeholder="例：交換コードのお知らせ…" autocomplete="off">
+                  <p id="webhookNameError" class="field-error" aria-live="polite"></p>
+                </div>
+                <div class="field field-wide">
+                  <label for="webhookUrl">Webhook URL</label>
+                  <div class="password-wrap">
+                    <input type="password" id="webhookUrl" maxlength="300" aria-required="true" aria-describedby="webhookUrlError webhookUrlHelp" class="cyber-input" placeholder="https://discord.com/api/webhooks/…" autocomplete="off" spellcheck="false">
+                    <button class="field-eye" type="button" data-action="eye" data-field="webhookUrl" aria-label="Webhook URLを表示">
+                      <svg class="icon" aria-hidden="true"><use href="#icon-eye"/></svg>
+                    </button>
+                  </div>
+                  <p class="field-help" id="webhookUrlHelp">投稿権限を持つURLです。公開・共有しないでください。</p>
+                  <p id="webhookUrlError" class="field-error" aria-live="polite"></p>
+                </div>
+              </div>
+              <p class="form-error" id="webhookError" role="alert"></p>
+              <button class="btn btn-primary add-webhook-btn" type="submit" data-action="add">
+                <svg class="icon" aria-hidden="true"><use href="#icon-webhook"/></svg>送信先を登録
+              </button>
+            </form>
+          </section>
+        </div>
+
+        <aside id="settings-log-pane" class="side-panel log-panel" aria-labelledby="logTitle" hidden>
+          <div class="side-header">
+            <h2 class="side-title" id="logTitle"><svg class="icon" aria-hidden="true"><use href="#icon-log"/></svg>送信ログ</h2>
+            <div class="side-header-actions">
+              <button class="btn btn-quiet hidden" id="retryFailedBtn" type="button" data-action="retry"><svg class="icon" aria-hidden="true"><use href="#icon-retry"/></svg>再送</button>
+              <button class="icon-button" type="button" data-action="clearLog" aria-label="送信ログを消去" title="送信ログを消去"><svg class="icon" aria-hidden="true"><use href="#icon-trash"/></svg></button>
+            </div>
+          </div>
+          <div class="log-area" id="logArea" tabindex="0" aria-label="送信ログ一覧" aria-live="polite">
+            <div class="empty"><svg class="empty-icon"><use href="#icon-log"/></svg><p>送信ログはまだありません</p><span>テスト送信や一括送信の結果を表示します。</span></div>
+          </div>
+        </aside>
+
+        <section id="settings-data-pane" class="panel data-panel" aria-label="データ管理" hidden>
+          <section class="data-controls">
+            <h2 id="dataControlsTitle"><svg class="icon" aria-hidden="true"><use href="#icon-database"/></svg>データ管理</h2>
+            <div class="data-controls-body">
+              <label class="persistence-control"><input type="checkbox" id="persistenceToggle" checked><span>ブラウザに保存する</span></label>
+              <p id="storageModeHelp">Webhookと履歴をこのブラウザに保存します。</p>
+            </div>
+          </section>
+          <section class="data-transfers" aria-labelledby="dataTransferTitle">
+            <h3 id="dataTransferTitle">設定の書き出し・読み込み</h3>
+            <p>設定のみの書き出しにはURLを含みません。URL付きバックアップは秘密情報として保管してください。</p>
+            <div class="data-transfer-actions">
+              <button class="btn btn-quiet" type="button" data-action="export"><svg class="icon" aria-hidden="true"><use href="#icon-download"/></svg>設定のみ書き出し</button>
+              <button class="btn btn-quiet" type="button" data-action="backup"><svg class="icon" aria-hidden="true"><use href="#icon-download"/></svg>URL付きバックアップ</button>
+              <button class="btn btn-quiet" type="button" data-action="import"><svg class="icon" aria-hidden="true"><use href="#icon-upload"/></svg>読み込み</button>
+            </div>
+            <input type="file" id="importFile" class="hidden" accept=".json,application/json">
+            <p class="field-help">JSONは100KB・10件まで。読み込み前に確認し、不正なファイルでは設定を変更しません。</p>
+          </section>
+          <p class="workspace-privacy">Webhook URLと履歴は、このブラウザで管理します。保存OFFでは再読み込みすると消えます。</p>
+          <section class="danger-zone" aria-labelledby="dangerTitle">
+            <div>
+              <h3 id="dangerTitle">ローカルデータを削除</h3>
+              <p>登録先・履歴・入力内容を削除します。この操作は取り消せません。</p>
+            </div>
+            <button class="btn btn-quiet btn-danger" type="button" data-action="clearAll"><svg class="icon" aria-hidden="true"><use href="#icon-trash"/></svg>全データ削除</button>
+          </section>
+        </section>
+      </div>
+    </section>
+
+    <section id="tab-help" class="tab-pane" role="tabpanel" aria-labelledby="nav-help">
+      <div class="help-page">
+        <header class="help-hero"><h1>使い方</h1><p>まずはコードを貼り付けるだけ。共有や保存も、ここで確認できます。</p></header>
+        <div class="help-layout">
+          <nav class="help-toc" aria-label="使い方の目次">
+            <a href="#help-start"><svg class="icon" aria-hidden="true"><use href="#icon-wand"/></svg>基本操作</a>
+            <a href="#help-input"><svg class="icon" aria-hidden="true"><use href="#icon-paste"/></svg>コード入力</a>
+            <a href="#help-output"><svg class="icon" aria-hidden="true"><use href="#icon-copy"/></svg>出力形式</a>
+            <a href="#help-webhook"><svg class="icon" aria-hidden="true"><use href="#icon-webhook"/></svg>Webhook設定</a>
+            <a href="#help-send"><svg class="icon" aria-hidden="true"><use href="#icon-send"/></svg>送信と再送</a>
+            <a href="#help-data"><svg class="icon" aria-hidden="true"><use href="#icon-database"/></svg>データ保存</a>
+            <a href="#help-trouble"><svg class="icon" aria-hidden="true"><use href="#icon-retry"/></svg>トラブル対処</a>
+            <a href="#help-notice"><svg class="icon" aria-hidden="true"><use href="#icon-info"/></svg>注意事項</a>
+          </nav>
+          <div class="help-content">
+            <section class="help-section" id="help-start"><h2><svg class="icon" aria-hidden="true"><use href="#icon-wand"/></svg>リンク作成は、3つの手順で</h2>
+              <div class="guide-start">
+                <ol class="guide-steps"><li><span class="guide-step-icon"><svg class="icon" aria-hidden="true"><use href="#icon-gift"/></svg></span><div><h3>ゲームを選ぶ</h3><p>原神・スターレイル・ゼンゼロから対象を選択。色とアイコンが作品に合わせて切り替わります。</p></div></li><li><span class="guide-step-icon"><svg class="icon" aria-hidden="true"><use href="#icon-paste"/></svg></span><div><h3>コードを貼り付ける</h3><p>1行に1コード。入力するとリンクが自動でできます。スマートフォンでは「共有」で表示を切り替えます。</p></div></li><li><span class="guide-step-icon"><svg class="icon" aria-hidden="true"><use href="#icon-copy"/></svg></span><div><h3>コピーして共有する</h3><p>URLかMarkdownをコピー。公式ページも1件ずつ開け、開いた行には「開済」目印が付きます。</p></div></li></ol>
+                <div class="guide-example"><p class="example-caption">入力と結果の例</p><pre translate="no"><code>sample123
+SAMPLE123</code></pre><p class="example-note">重複をまとめて、1件のリンクに。</p><div class="example-result"><svg class="icon" aria-hidden="true"><use href="#icon-external"/></svg><div><strong translate="no">SAMPLE123</strong><span>選んだゲームの公式交換ページ</span></div></div><p class="example-note">説明用のコードです。有効なコードではありません。</p></div>
+              </div>
+              <button type="button" class="btn btn-secondary guide-cta" data-action="tab" data-tab="converter"><svg class="icon" aria-hidden="true"><use href="#icon-wand"/></svg>リンクを作成する</button>
+            </section>
+            <section class="help-section" id="help-input"><h2><svg class="icon" aria-hidden="true"><use href="#icon-paste"/></svg>コード入力のポイント</h2><p>コードだけでなく、選択中の作品の公式交換URLも1行ずつ貼り付けられます。別作品のURLや不正なURLは理由を表示して除外します。</p>
+              <div class="guide-limits"><span><strong>20件</strong>まで</span><span><strong>10,000文字</strong>まで</span><span>半角英数字</span></div>
+              <dl class="guide-definitions"><div><dt>小文字・重複</dt><dd>大文字に統一し、同じコードは1件にまとめます。「整理」で入力欄も整えられます。整理・クリアは「元に戻す」で1回戻せます。手入力や履歴復元の後は古い取り消しを使えません。</dd></div><div><dt>入力エラー</dt><dd>記号などを含む行は理由を表示して除外します。上限を超えたら処理を止めるので、入力を減らしてください。</dd></div><div><dt>貼り付け</dt><dd>貼り付けボタン、または入力欄で <kbd>Ctrl</kbd> + <kbd>V</kbd>。スマートフォンでは長押しでも貼り付けられます。</dd></div></dl>
+              <p class="guide-note">コードは1〜128文字の半角英数字として検証します。有効期限や利用可否は公式ページで確認してください。</p>
+            </section>
+            <section class="help-section" id="help-output"><h2><svg class="icon" aria-hidden="true"><use href="#icon-copy"/></svg>共有先に合わせてコピー</h2>
+              <div class="format-comparison"><div><h3>URL</h3><p>交換ページのアドレスを、そのまま共有したいときに。</p><code translate="no">https://hsr.hoyoverse.com/gift?code=SAMPLE123</code></div><div><h3>Markdown</h3><p>Discordでコード名付きのリンクとして共有したいときに。</p><code translate="no">[交換コード：SAMPLE123](公式交換URL)</code></div></div>
+              <p>「URL / Discord用」から形式を選ぶと、対応するコピーボタンを表示します。各コードの右側では、1件だけのコピー・公式ページの表示もできます。</p>
+              <details class="guide-detail"><summary><svg class="icon" aria-hidden="true"><use href="#icon-settings"/></svg>Markdownの見出しと表示の保存</summary><p>「Discord用」を選ぶと、大きい・中くらい・小さい見出し・なしを設定できます。ゲーム・表示形式・見出しは、ブラウザ保存がONのときに記憶します。</p></details>
+            </section>
+            <section class="help-section" id="help-webhook"><h2><svg class="icon" aria-hidden="true"><use href="#icon-webhook"/></svg>Discordの送信先を登録</h2>
+              <ol class="guide-steps webhook-steps"><li><span class="guide-step-icon"><svg class="icon" aria-hidden="true"><use href="#icon-settings"/></svg></span><div><h3>チャンネルの設定を開く</h3><p>Discordで投稿したいチャンネルの「設定」を開きます。</p></div></li><li><span class="guide-step-icon"><svg class="icon" aria-hidden="true"><use href="#icon-webhook"/></svg></span><div><h3>Webhookを作成する</h3><p>「連携サービス」→「ウェブフック」で作成し、URLをコピーします。</p></div></li><li><span class="guide-step-icon"><svg class="icon" aria-hidden="true"><use href="#icon-paste"/></svg></span><div><h3>このサイトに登録する</h3><p>「Discord設定」の「追加」で対応ゲーム・表示名・URLを入力し、「送信先を登録」。最大10件まで登録できます。</p></div></li><li><span class="guide-step-icon"><svg class="icon" aria-hidden="true"><use href="#icon-test"/></svg></span><div><h3>テスト送信で確認する</h3><p>登録した送信先の「テスト送信」で、チャンネルに届くか確認します。</p></div></li></ol>
+              <div class="guide-callout"><svg class="icon" aria-hidden="true"><use href="#icon-eye-off"/></svg><p>Webhook URLは投稿権限を持つ秘密情報です。公開・共有せず、表示切替は必要なときだけ使ってください。</p></div>
+              <details class="guide-detail"><summary><svg class="icon" aria-hidden="true"><use href="#icon-settings"/></svg>登録内容の変更・旧設定の引き継ぎ</summary><p>名前・URL・ゲームは送信先の「編集」から変更できます。旧設定はゲーム未設定・無効の状態で引き継ぎます。対応ゲームを設定し、必要な送信先だけをONにしてください。</p></details>
+            </section>
+            <section class="help-section" id="help-send"><h2><svg class="icon" aria-hidden="true"><use href="#icon-send"/></svg>確認してから、まとめて送信</h2>
+              <ul class="send-checklist"><li><svg class="icon" aria-hidden="true"><use href="#icon-gift"/></svg>選択中のゲームに対応する、ONの送信先だけが対象</li><li><svg class="icon" aria-hidden="true"><use href="#icon-check"/></svg>送信前にゲーム・コード数・送信先名・総投稿数を確認</li><li><svg class="icon" aria-hidden="true"><use href="#icon-history"/></svg>同じコードの再送は警告を表示。再告知も可能</li></ul>
+              <div class="guide-limits"><span><strong>5送信先</strong> / 回</span><span><strong>10投稿</strong> / 回</span><span><strong>2,000文字</strong> / 投稿</span></div>
+              <p>長い本文はコード単位で分割します。通常送信と再送は操作全体で30秒、テスト送信は送信先ごとに60秒の待機時間があります。</p>
+              <details class="guide-detail"><summary><svg class="icon" aria-hidden="true"><use href="#icon-retry"/></svg>一部成功・失敗・再送の扱い</summary><p>成功・一部成功・失敗を区別して表示します。「Discord設定」→「送信履歴」の「再送」は、失敗したメッセージだけが対象です。Discordから待機時間が指定された場合は、そちらを優先します。自動再試行は行いません。</p><p>8秒以内に応答がなければタイムアウトします。通信が途切れても届いている可能性があるので、チャンネルを確認してから再送してください。不正なURLや権限エラーの送信先は停止します。</p></details>
+            </section>
+            <section class="help-section" id="help-data"><h2><svg class="icon" aria-hidden="true"><use href="#icon-database"/></svg>保存するかは、自分で選べます</h2>
+              <div class="storage-comparison"><div><svg class="icon" aria-hidden="true"><use href="#icon-database"/></svg><h3>保存ON <span>初期設定</span></h3><p>Webhookと履歴をこのブラウザに保存。再読み込みしても利用できます。</p></div><div><svg class="icon" aria-hidden="true"><use href="#icon-eye-off"/></svg><h3>保存OFF</h3><p>Webhookは現在のタブだけで保持。再読み込みすると消えます。</p></div></div>
+              <p>「Discord設定」→「保存・移行」で切り替えられます。運営サーバーへの保存・同期は行いません。送信時のみDiscordへ内容を送ります。</p>
+              <div class="guide-callout"><svg class="icon" aria-hidden="true"><use href="#icon-download"/></svg><p>「Discord設定」→「保存・移行」に書き出し・読み込みをまとめています。設定のみの書き出しにはURLを含みません。<strong>「URL付きバックアップ」には秘密情報が含まれます。</strong>公開場所へ置かないでください。</p></div>
+              <details class="guide-detail"><summary><svg class="icon" aria-hidden="true"><use href="#icon-info"/></svg>保存範囲・削除・JSON読み込みの詳細</summary><ul><li>保存OFFへの切り替えは全タブに反映し、履歴・送信済み記録も永続保存しません。連打防止用の時刻とWebhook識別番号だけは共有します。</li><li>全データ削除はWebhook・履歴・送信済み記録・ログ・入力内容を削除します。連打防止用の時刻とWebhook識別番号は保持します。</li><li>読み込めるJSONは100KB・10件まで。不正なファイルは既存設定を変更しません。旧サイトからは自動移行しないため、JSONで移行してください。</li><li>送信済み記録はゲーム・コード・Webhook識別番号・送信日時だけを最大30日・1,000件保持します。</li></ul><p>ブラウザ保存は暗号化されません。共有端末では保存OFFを使い、信頼できない拡張機能に注意してください。</p></details>
+            </section>
+            <section class="help-section" id="help-trouble"><h2><svg class="icon" aria-hidden="true"><use href="#icon-retry"/></svg>困ったときは</h2>
+              <details class="guide-detail"><summary><svg class="icon" aria-hidden="true"><use href="#icon-paste"/></svg>貼り付けボタンが使えない</summary><p>ブラウザがクリップボードを許可していません。入力欄を選んで Ctrl+V、または長押しの「貼り付け」を使ってください。</p></details>
+              <details class="guide-detail"><summary><svg class="icon" aria-hidden="true"><use href="#icon-send"/></svg>Discord送信に失敗する</summary><p>対応ゲーム・Webhook URL・ON/OFF・Discord側の権限を確認してください。通信・CORSエラーの場合は届いているかチャンネルを確認し、表示された待機時間の後に手動で再送してください。</p></details>
+              <details class="guide-detail"><summary><svg class="icon" aria-hidden="true"><use href="#icon-external"/></svg>交換ページを開けない</summary><p>各コード右側の「開く」を1件ずつ利用してください。ブラウザのポップアップ制限も確認してください。</p></details>
+              <details class="guide-detail"><summary><svg class="icon" aria-hidden="true"><use href="#icon-restore"/></svg>表示が更新されない</summary><p>ページを再読み込みしてください。保存OFFの場合、再読み込みで現在のタブのデータは消えます。</p></details>
+            </section>
+            <section class="help-section" id="help-notice"><h2><svg class="icon" aria-hidden="true"><use href="#icon-info"/></svg>ご利用にあたって</h2>
+              <p>本サイトは非公式のファンツールです。HoYoverseおよびCOGNOSPHEREとは関係ありません。コードの有効期限・利用可否は公式情報を確認してください。</p><p>ブラウザ内の制限は悪意ある操作によって回避でき、サーバー側の強制的なスパム対策にはなりません。不要なWebhookはDiscord側でも削除してください。</p>
+            </section>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer"><div class="sidebar-note"><svg class="icon" aria-hidden="true"><use href="#icon-database"/></svg><p id="sidebarStorageState">設定と履歴は、このブラウザに保存されます。</p></div><p>HoYoverse非公式 · コードの有効性は公式ページで確認してください。</p></footer>
+</div>
+
+<div id="toast-root" aria-live="polite" aria-atomic="true"></div>
+<div id="modal-root" role="presentation">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-describedby="modalBody" tabindex="-1">
+    <div class="modal-head"><h2 class="modal-ttl" id="modalTitle"></h2><button class="icon-button" type="button" data-action="close" aria-label="ダイアログを閉じる"><svg class="icon" aria-hidden="true"><use href="#icon-close"/></svg></button></div>
+    <div class="modal-body" id="modalBody"></div>
+    <div class="modal-acts"><button class="btn btn-secondary" type="button" data-action="close">キャンセル</button><button class="btn btn-primary" type="button" id="modalOk">実行する</button></div>
+  </div>
+</div>
+
+<script src="js/safety.js"></script>
+<script src="js/delivery.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

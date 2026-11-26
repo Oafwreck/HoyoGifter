@@ -1,0 +1,148 @@
+:root {
+  color-scheme: dark;
+
+  /* Architectural Slate-Black Surfaces */
+  --color-void: #090b0f;
+  --color-paper: #0d1017;
+  --color-sidebar: #0d1017;
+  --color-surface: #121620;
+  --color-surface-elevated: #181e2b;
+  --color-paper-2: #1a202e;
+  --color-paper-3: #242c3d;
+  --color-input: #090b0f;
+  --color-raised: #1c2333;
+  --color-hover: #21293a;
+
+  /* Ink & Contrast (WCAG AA/AAA against #0D1017 and #121620) */
+  --color-ink: #f3f5f9;
+  --color-ink-2: #c5ccd9;
+  --color-muted: #8b95a8;
+  --color-placeholder: #687387;
+
+  /* Structural Hairlines */
+  --color-rule: #232a38;
+  --color-rule-subtle: #1b212d;
+  --color-input-rule: #364156;
+  --color-specular: rgba(255, 255, 255, 0.04);
+
+  /* Brand Default Accent */
+  --color-accent: #a78bfa;
+  --color-accent-hover: #c4b5fd;
+  --color-accent-ink: #120b26;
+  --color-accent-soft: rgba(167, 139, 250, 0.13);
+  --color-focus: #c4b5fd;
+
+  /* Per-game Identity Palette (High-contrast restrained accents + distinct emblems) */
+  /* Zenless Zone Zero: Electric Citrus */
+  --color-zzz: #d4f542;
+  --color-zzz-hover: #e2fa70;
+  --color-zzz-ink: #111603;
+  --color-zzz-soft: rgba(212, 245, 66, 0.11);
+  --color-zzz-border: rgba(212, 245, 66, 0.45);
+
+  /* Genshin Impact: Astra Gold */
+  --color-genshin: #e8c36b;
+  --color-genshin-hover: #f2d48c;
+  --color-genshin-ink: #1a1303;
+  --color-genshin-soft: rgba(232, 195, 107, 0.11);
+  --color-genshin-border: rgba(232, 195, 107, 0.45);
+
+  /* Honkai: Star Rail: Cosmic Iris */
+  --color-hsr: #a78bfa;
+  --color-hsr-hover: #c4b5fd;
+  --color-hsr-ink: #120b26;
+  --color-hsr-soft: rgba(167, 139, 250, 0.13);
+  --color-hsr-border: rgba(167, 139, 250, 0.48);
+
+  /* Active Game Theme Tokens (synced dynamically via body[data-game]) */
+  --game-accent: var(--color-zzz);
+  --game-accent-hover: var(--color-zzz-hover);
+  --game-accent-ink: var(--color-zzz-ink);
+  --game-soft: var(--color-zzz-soft);
+  --game-border: var(--color-zzz-border);
+
+  /* Semantic States */
+  --color-success: #4ade80;
+  --color-success-ink: #052210;
+  --color-success-soft: rgba(74, 222, 128, 0.12);
+  --color-success-border: rgba(74, 222, 128, 0.36);
+  --color-warning: #fbbf24;
+  --color-warning-soft: rgba(251, 191, 36, 0.12);
+  --color-warning-border: rgba(251, 191, 36, 0.4);
+  --color-error: #f87171;
+  --color-error-ink: #2a0707;
+  --color-error-soft: rgba(248, 113, 113, 0.12);
+  --color-error-border: rgba(248, 113, 113, 0.42);
+
+  /* Discord Brand */
+  --color-discord: #5865f2;
+  --color-discord-hover: #6c77f5;
+  --color-discord-ink: #ffffff;
+  --color-discord-soft: rgba(88, 101, 242, 0.16);
+  --color-discord-border: rgba(88, 101, 242, 0.5);
+
+  /* Elevation & Overlay */
+  --color-overlay: rgba(5, 7, 11, 0.84);
+  --color-shadow: rgba(0, 0, 0, 0.52);
+
+  /* Typography */
+  --font-display: 'Segoe UI Variable Display', 'Segoe UI', 'Yu Gothic UI', 'Meiryo', system-ui, sans-serif;
+  --font-body: 'Segoe UI Variable Text', 'Segoe UI', 'Yu Gothic UI', 'Meiryo', system-ui, sans-serif;
+  --font-mono: 'Cascadia Code', 'Consolas', ui-monospace, monospace;
+
+  /* Spacing Scale (4px base) */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+
+  /* Architectural Radius Scale (restrained, sharp utility) */
+  --radius-xs: 4px;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+
+  /* Motion */
+  --dur-micro: 120ms;
+  --dur-short: 200ms;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* Layers */
+  --z-menu: 20;
+  --z-navigation: 30;
+  --z-modal: 50;
+  --z-toast: 60;
+  --z-skip: 70;
+
+  /* Legacy aliases */
+  --accent: var(--game-accent);
+  --text3: var(--color-muted);
+}
+
+body[data-game="zzz"] {
+  --game-accent: var(--color-zzz);
+  --game-accent-hover: var(--color-zzz-hover);
+  --game-accent-ink: var(--color-zzz-ink);
+  --game-soft: var(--color-zzz-soft);
+  --game-border: var(--color-zzz-border);
+}
+
+body[data-game="genshin"] {
+  --game-accent: var(--color-genshin);
+  --game-accent-hover: var(--color-genshin-hover);
+  --game-accent-ink: var(--color-genshin-ink);
+  --game-soft: var(--color-genshin-soft);
+  --game-border: var(--color-genshin-border);
+}
+
+body[data-game="hsr"] {
+  --game-accent: var(--color-hsr);
+  --game-accent-hover: var(--color-hsr-hover);
+  --game-accent-ink: var(--color-hsr-ink);
+  --game-soft: var(--color-hsr-soft);
+  --game-border: var(--color-hsr-border);
+}
